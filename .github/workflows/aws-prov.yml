@@ -14,16 +14,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 4.16
+
       - name: Terraform Init
         run: cd infra | terraform init
-
-      - name: Terraform Plan
-        id: plan
-        run: cd infra | terraform plan -out=tfplan
-
-      - name: Check if plan is empty
-        run: cd infra |
-          echo "${{ steps.plan.outputs.stdout }}" | grep "No changes" && exit 78 || exit 0
 
       - name: Terraform Apply
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
