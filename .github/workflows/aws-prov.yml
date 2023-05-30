@@ -1,8 +1,9 @@
-name: Terrasoft CI/CD
+name: Terraform AWS Pipeline
 on:
   push:
     branches:
       - main-lab02
+
 jobs:
   provision-ec2:
     runs-on: ubuntu-latest
@@ -24,9 +25,9 @@ jobs:
       - name: Terraform Apply
         id:   apply
         env:
-          TF_VAR_ec2_name:  "lab2-2-instance"
-        run: cd infra |
-          cd tf-example/
+          TF_VAR_ec2_name:  "$"
+        run: |
+          cdinfra/
           terraform init
           terraform validate
           terraform plan 
