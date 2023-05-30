@@ -28,7 +28,7 @@ jobs:
       - name: Terraform Apply
         id:   apply
         env:
-          TF_VAR_ec2_name:  "$"
+          TF_VAR_ec2_name:  "lab2-2-instance"
         run: cd infra |
           cd tf-example/
           terraform init
