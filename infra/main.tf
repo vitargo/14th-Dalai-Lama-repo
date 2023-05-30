@@ -18,13 +18,13 @@ resource "aws_instance" "lab2-p" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "lab2-instance"
+    Name = "lab2.1-instance"
   }
 }
 
 resource "aws_security_group" "lab2-p" {
-  name        = "lab-security-group"
-  description = "Lab2 Security Group"
+  name        = "lab-2.1-security-group"
+  description = "Lab2.1 Security Group"
 
 
   ingress {
