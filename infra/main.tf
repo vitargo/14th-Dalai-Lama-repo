@@ -13,7 +13,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_instance" "lab2" {
+resource "aws_instance" "lab2-p" {
   ami           = "ami-053b0d53c279acc90"
   instance_type = "t2.micro"
 
@@ -22,7 +22,7 @@ resource "aws_instance" "lab2" {
   }
 }
 
-resource "aws_security_group" "lab2" {
+resource "aws_security_group" "lab2-p" {
   name        = "lab-security-group"
   description = "Lab2 Security Group"
 
