@@ -1,12 +1,8 @@
 ame: Provision t3.micro EC2
 on:
-  workflow_dispatch:
-    inputs:
-      ec2-name:
-        description: Vita-lab02
-        required: true
-        default: 'Lab2'
-        type: string
+  push:
+    branches:
+      - main-lab02
 jobs:
   provision-ec2:
     runs-on: ubuntu-latest
