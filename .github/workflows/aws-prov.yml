@@ -27,7 +27,7 @@ jobs:
         env:
           TF_VAR_ec2_name:  "$"
         run: |
-          cdinfra/
+          cd infra/
           terraform init
           terraform validate
           terraform plan 
