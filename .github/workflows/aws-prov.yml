@@ -24,15 +24,15 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -out=tfplan
+        run: cd infra | terraform plan -out=tfplan
 
       - name: Check if plan is empty
-        run: |
+        run: cd infra |
           echo "${{ steps.plan.outputs.stdout }}" | grep "No changes" && exit 78 || exit 0
 
       - name: Terraform Apply
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: terraform apply tfplan -auto-approve
+        run: cd infra | terraform apply tfplan -auto-approve
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
