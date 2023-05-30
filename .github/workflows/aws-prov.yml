@@ -1,0 +1,46 @@
+name: Terraform CI/CD
+
+on:
+  push:
+    branches:
+      - main-lab02
+
+jobs:
+  deploy:
+    name: Deploy Infrastructure and Push Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -out=tfplan
+
+      - name: Check if plan is empty
+        run: |
+          echo "${{ steps.plan.outputs.stdout }}" | grep "No changes" && exit 78 || exit 0
+
+      - name: Terraform Apply
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: terraform apply tfplan -auto-approve
+
+      - name: Build and Push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: site/
+          push: true
+          tags: vitargo/14th-dalai-lama-site:latest
+          env:
+            DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
+            DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
+
