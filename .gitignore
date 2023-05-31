@@ -12,6 +12,11 @@
 .cxx
 local.properties
 
+###Terraform###
+/**/.terraform
+/**/terraform.*
+/**/.terraform.lock.hcl
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
