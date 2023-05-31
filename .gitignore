@@ -6,7 +6,13 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+
+###Terraform###
 /**/.terraform
+/**/terraform.*
+/**/.terraform.lock.hcl
+
+
 /build
 /captures
 .externalNativeBuild
