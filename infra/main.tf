@@ -42,7 +42,7 @@ resource "aws_security_group" "lab2-p" {
 resource "aws_instance" "lab2-p" {
   ami           = "ami-053b0d53c279acc90"
   instance_type = "t2.micro"
-  security_group_ids = [aws_security_group.lab2-p.id]
+  vpc_security_group_ids = [aws_security_group.lab2-p.id]
 
   tags = {
     Name = "lab2.1-instance"
